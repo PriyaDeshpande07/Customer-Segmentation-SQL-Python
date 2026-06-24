@@ -1,0 +1,133 @@
+CUSTOMER SEGMENTATION ANALYSIS – SQL OUTPUTS
+
+1. Average Salary (Aggregation)
+
+SQL Query:
+SELECT AVG(SAL)
+FROM EMP;
+
+Output:
+
+## AVG(SAL)
+
+2073.21429
+
+2. Average Salary by Department (GROUP BY)
+
+SQL Query:
+SELECT DEPTNO, AVG(SAL)
+FROM EMP
+GROUP BY DEPTNO;
+
+Output:
+
+DEPTNO   AVG(SAL)
+
+---
+
+30       1566.66667
+20       2175
+10       2916.66667
+
+3. Employee Count by Department (COUNT + GROUP BY)
+
+SQL Query:
+SELECT DEPTNO, COUNT(*)
+FROM EMP
+GROUP BY DEPTNO;
+
+Output:
+
+DEPTNO   COUNT(*)
+
+---
+
+30       6
+20       5
+10       3
+
+4. Employees Ordered by Salary (ORDER BY)
+
+SQL Query:
+SELECT ENAME, SAL
+FROM EMP
+ORDER BY SAL DESC;
+
+Output:
+
+ENAME      SAL
+
+---
+
+KING       5000
+FORD       3000
+SCOTT      3000
+JONES      2975
+BLAKE      2850
+CLARK      2450
+ALLEN      1600
+TURNER     1500
+MILLER     1300
+WARD       1250
+MARTIN     1250
+ADAMS      1100
+JAMES       950
+SMITH       800
+
+5. Employee Department Details (JOIN)
+
+SQL Query:
+SELECT E.ENAME, D.DNAME
+FROM EMP E
+JOIN DEPT D
+ON E.DEPTNO = D.DEPTNO;
+
+Output:
+
+ENAME      DNAME
+
+---
+
+SMITH      RESEARCH
+ALLEN      SALES
+WARD       SALES
+JONES      RESEARCH
+MARTIN     SALES
+BLAKE      SALES
+CLARK      ACCOUNTING
+SCOTT      RESEARCH
+KING       ACCOUNTING
+TURNER     SALES
+ADAMS      RESEARCH
+JAMES      SALES
+FORD       RESEARCH
+MILLER     ACCOUNTING
+
+6. Employee Salary Ranking (WINDOW FUNCTION – RANK)
+
+SQL Query:
+SELECT ENAME,
+SAL,
+RANK() OVER (ORDER BY SAL DESC) AS SALARY_RANK
+FROM EMP;
+
+Output:
+
+ENAME      SAL   SALARY_RANK
+
+---
+
+KING       5000       1
+FORD       3000       2
+SCOTT      3000       2
+JONES      2975       4
+BLAKE      2850       5
+CLARK      2450       6
+ALLEN      1600       7
+TURNER     1500       8
+MILLER     1300       9
+WARD       1250      10
+MARTIN     1250      10
+ADAMS      1100      12
+JAMES       950      13
+SMITH       800      14
